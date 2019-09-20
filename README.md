@@ -15,7 +15,7 @@ create table editoria (
 )
 
 create table jornalista (
-  idEJornalista serial PRIMARY KEY,
+  idJornalista serial PRIMARY KEY,
   nome varchar(150) NOT NULL
 )
 
@@ -26,5 +26,5 @@ create table noticia (
 	dataNoticia Date NOT NULL,
 	texto text NOT NULL,
 	idEditoria integer NOT NULL REFERENCES editoria (idEditoria),
-  idJornalista integer NOT NULL REFERENCES jornalista (idJornalista)
+  	idJornalista integer NOT NULL REFERENCES jornalista (idJornalista)
 )
