@@ -17,16 +17,20 @@ public final class JpaUtil {
 		if (entityManagerFactory == null) {
 			entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		}
+		
 		EntityManager entityManager = threadEntityManager.get();
+		
 		if (entityManager == null || !entityManager.isOpen()) {
 			entityManager = entityManagerFactory.createEntityManager();
 			JpaUtil.threadEntityManager.set(entityManager);
 		}
+		
 		return entityManager;
 	}
 
 	public static void closeEntityManager() {
 		EntityManager em = threadEntityManager.get();
+		
 		if (em != null) {
 			EntityTransaction transaction = em.getTransaction();
 			if (transaction.isActive()) {

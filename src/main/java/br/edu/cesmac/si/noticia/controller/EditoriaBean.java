@@ -16,13 +16,17 @@ public class EditoriaBean implements Serializable {
 	private Editoria editoria = new Editoria();
 	private List<Editoria> editorias;
 
-	public void salvar() {
+	public void salvar(Editoria editoria) {
 		new EditoriaJpa().cadastrar(editoria);
 	}
 
 	public List<Editoria> getLista() {
 		editorias = new EditoriaJpa().listar();
 		return editorias;
+	}
+	
+	public void remover(Editoria editoria) {
+		new EditoriaJpa().remover(editoria);
 	}
 	
 	public Editoria getEditoria() {

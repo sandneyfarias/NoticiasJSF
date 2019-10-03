@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<h:head>
+		<title>Consulta de Notícias</title>
+	</h:head>
+	<h:body>
+		<h:form>
+			<h:outputText value="Nenhuma notícia cadastrada!" rendered="#{empty noticiaBean.lista}" />
+			<h:dataTable value="#{noticiaBean.lista}" var="n" border="1" rendered="#{not empty noticiaBean.lista}">
+				<h:column>
+					<f:facet name="header">
+						Código
+					</f:facet>
+					#{n.idNoticia}
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						Editoria
+					</f:facet>			
+					#{n.editoria.id} - #{n.editoria.nome} 
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						Jornalista
+					</f:facet>			
+					#{n.jornalista.idJornalista} - #{n.jornalista.nome} 
+				</h:column>												
+				<h:column>
+					<f:facet name="header">
+						Título
+					</f:facet>			
+					#{n.titulo}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Ações</f:facet>
+					<h:commandLink action="#{noticiaBean.remover(n)}">
+						Excluir
+					</h:commandLink>
+				</h:column>			
+			</h:dataTable>
+		</h:form>	
+	</h:body>
+</html>

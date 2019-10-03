@@ -5,42 +5,42 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import br.edu.cesmac.si.noticia.JPA.JpaUtil;
-import br.edu.cesmac.si.noticia.domain.Editoria;
+import br.edu.cesmac.si.noticia.domain.Noticia;
 
-public class EditoriaJpa {
+public class NoticiaJpa {
 
-	public void cadastrar(Editoria editoria) {
+	public void cadastrar(Noticia noticia) {
 		EntityManager em = JpaUtil.getEntityManager();
 		em.getTransaction().begin();
-		em.persist(editoria);
+		em.persist(noticia);
 		em.getTransaction().commit();
 		em.close();
 	}
 	
-	public void alterar(Editoria editoria) {
+	public void alterar(Noticia noticia) {
 		EntityManager em = JpaUtil.getEntityManager();
 		em.getTransaction().begin();
-		em.merge(editoria);
+		em.merge(noticia);
 		em.getTransaction().commit();
 		em.close();
 	}	
 
-	public void remover(Editoria editoria) {
+	public void remover(Noticia noticia) {
 		EntityManager em = JpaUtil.getEntityManager();
 		em.getTransaction().begin();
-		editoria = em.merge(editoria);
-		em.remove(editoria);
+		noticia = em.merge(noticia);
+		em.remove(noticia);
 		em.getTransaction().commit();
 		em.close();
 	}	
 	
-	public List<Editoria> listar() {
+	public List<Noticia> listar() {
 		EntityManager em = JpaUtil.getEntityManager();
 
-		List<Editoria> editorias = em.createQuery("select e from editoria e").getResultList();
+		List<Noticia> noticias = em.createQuery("select n from noticia n").getResultList();
 		em.close();
 		
-		return editorias;
+		return noticias;
 	}
 
 }
